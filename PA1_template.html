@@ -66,15 +66,15 @@ img {
 
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
-<p>Unzip the folder - use ‘Unzip()’ function, read the data into a data frame ‘DtFrmActivity’</p>
+<p>Unzip the folder - use Unzip() function, read the data into a data frame DtFrmActivity</p>
 <pre class="r"><code>if(!file.exists('activity.csv')){
     unzip('activity.zip')
 }
 DtFrmActivity &lt;- read.csv('activity.csv')</code></pre>
-<p>Create an ‘dateandtime’ column. This is a combination of the date and interval columns.</p>
+<p>Create an dateandtime column. This is a combination of the date and interval columns.</p>
 <pre class="r"><code>acttime &lt;- formatC(DtFrmActivity$interval / 100, 2, format='f')
 DtFrmActivity$dateandtime &lt;- as.POSIXct(paste(DtFrmActivity$date, acttime),format='%Y-%m-%d %H.%M',tz='GMT')</code></pre>
-<p>Create a column ‘activitytime’ just to hold the time of the day, this can be used for analysis of the data pattern based on just the Time Part of the day</p>
+<p>Create a column activitytime just to hold the time of the day, this can be used for analysis of the data pattern based on just the Time Part of the day</p>
 <pre class="r"><code>DtFrmActivity$activitytime &lt;- format(DtFrmActivity$dateandtime, format='%H:%M:%S')
 DtFrmActivity$activitytime &lt;- as.POSIXct(DtFrmActivity$activitytime, format='%H:%M:%S')</code></pre>
 </div>

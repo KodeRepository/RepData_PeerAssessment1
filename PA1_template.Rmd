@@ -9,7 +9,7 @@ knitr::opts_chunk$set(warning= FALSE)
 ```
 ## Loading and preprocessing the data
 
-Unzip the folder - use 'Unzip()' function, read the data into a data frame 'DtFrmActivity'
+Unzip the folder - use Unzip() function, read the data into a data frame DtFrmActivity
 ```{r}
 if(!file.exists('activity.csv')){
     unzip('activity.zip')
@@ -17,13 +17,13 @@ if(!file.exists('activity.csv')){
 DtFrmActivity <- read.csv('activity.csv')
 ```
 
-Create an 'dateandtime' column. This is a combination of the date and interval columns.
+Create an dateandtime column. This is a combination of the date and interval columns.
 ```{r}
 acttime <- formatC(DtFrmActivity$interval / 100, 2, format='f')
 DtFrmActivity$dateandtime <- as.POSIXct(paste(DtFrmActivity$date, acttime),format='%Y-%m-%d %H.%M',tz='GMT')
 ```
 
-Create a column 'activitytime' just to hold the time of the day, this can be used for analysis of the  data pattern based on just the Time Part of the day
+Create a column activitytime just to hold the time of the day, this can be used for analysis of the  data pattern based on just the Time Part of the day
 ```{r}
 DtFrmActivity$activitytime <- format(DtFrmActivity$dateandtime, format='%H:%M:%S')
 DtFrmActivity$activitytime <- as.POSIXct(DtFrmActivity$activitytime, format='%H:%M:%S')
